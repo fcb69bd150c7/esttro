@@ -1,0 +1,28 @@
+{
+  "name": "esttro-idea",
+  "version": "1.0.0",
+  "description": "Esttro Language IDE in IntelliJ IDEA New UI style",
+  "main": "electron/main.cjs",
+  "author": "Esttro Team",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "concurrently -k \"vite\" \"wait-on tcp:5173 && electron .\"",
+    "electron:dev": "electron ."
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
+    "lucide-react": "^1.16.0",
+    "monaco-editor": "^0.52.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "^34.3.0",
+    "vite": "^6.2.0",
+    "wait-on": "^8.0.2"
+  }
+}

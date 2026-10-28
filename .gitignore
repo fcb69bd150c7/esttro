@@ -4,4 +4,11 @@ Cargo.lock
 *.pdb
 *.vsix
 
+# IDE / Node
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+.vite/
+
 
