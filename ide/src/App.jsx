@@ -22,7 +22,7 @@ print("Готово!\\n")
 export default function App() {
   const [code, setCode] = useState(DEFAULT_CODE);
   const [output, setOutput] = useState('');
-  const [status, setStatus] = useState('Нажмите F5 для запуска');
+  const [status, setStatus] = useState('F5 для запуска кода.');
 
   useEffect(() => {
     if (window.api) {
@@ -32,21 +32,41 @@ export default function App() {
     }
   }, []);
 
-  function runCode() {
+  async function runCode() {
     setStatus('Выполняется...');
-    const result = executeEsttro(code);
 
-    let text = result.output;
+    let result;
+    if (window.api && window.api.runEsttro) {
+      result = await window.api.runEsttro(code);
+    } else {
+      const jsRes = executeEsttro(code);
+      const diagnostics = [];
+      if (jsRes.diagnostics && jsRes.diagnostics.length > 0) {
+        jsRes.diagnostics.forEach((d) => {
+          diagnostics.push(`Строка ${d.line}, колонка ${d.col}: ${d.message}`);
+        });
+      }
+      result = {
+        success: jsRes.success,
+        output: jsRes.output,
+        diagnostics,
+        durationMs: jsRes.durationMs,
+      };
+    }
+
+    let text = result.output || '';
     if (result.diagnostics && result.diagnostics.length > 0) {
-      text += '\nОшибки:\n';
+      if (text && !text.endsWith('\n')) text += '\n';
+      text += 'Ошибки:\n';
       result.diagnostics.forEach((d) => {
-        text += `Строка ${d.line}, колонка ${d.col}: ${d.message}\n`;
+        text += `${d}\n`;
       });
     }
 
-    text += `\nЗавершено за ${result.durationMs} мс`;
+    if (text && !text.endsWith('\n')) text += '\n';
+    text += `Завершено за ${result.durationMs} мс`;
     setOutput(text);
-    setStatus('Готово');
+    setStatus(result.success ? 'Готово' : 'Ошибка');
   }
 
   useEffect(() => {
@@ -85,7 +105,7 @@ export default function App() {
 
         <div className="column output-column">
           <div className="title">Вывод</div>
-          <pre className="output">{output || 'Нажмите F5 для запуска...'}</pre>
+          <pre className="output">{output || 'F5 для запуска кода.'}</pre>
         </div>
       </div>
 

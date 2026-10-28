@@ -575,6 +575,22 @@ class EsttroInterpreter {
     this.globals = new Map();
     this.functions = new Map();
     this.environment = this.globals;
+    this.initBuiltins();
+  }
+
+  initBuiltins() {
+    const builtins = [
+      'print',
+      'assert',
+      'toInt',
+      'toFloat',
+      'toDouble',
+      'toString',
+      'toBoolean',
+    ];
+    for (const b of builtins) {
+      this.globals.set(b, `<builtin ${b}>`);
+    }
   }
 
   run(statements) {
@@ -696,6 +712,7 @@ class EsttroInterpreter {
       case 'Variable':
         if (env.has(expr.name)) return env.get(expr.name);
         if (this.globals.has(expr.name)) return this.globals.get(expr.name);
+        if (this.functions.has(expr.name)) return `<fn ${expr.name}>`;
         throw new Error(`Undeclared identifier '${expr.name}'`);
       case 'Assignment': {
         const val = this.evaluate(expr.value, env);
@@ -741,9 +758,32 @@ class EsttroInterpreter {
         const funcName = expr.callee.name;
         if (funcName === 'print') {
           const evaluatedArgs = expr.args.map((a) => this.evaluate(a, env));
-          const text = evaluatedArgs.join('');
+          const text = evaluatedArgs.map((v) => (v === null || v === undefined ? '' : String(v))).join(' ') + '\n';
           this.outputCallback(text);
           return null;
+        }
+        if (funcName === 'assert') {
+          const evaluatedArgs = expr.args.map((a) => this.evaluate(a, env));
+          if (!evaluatedArgs[0]) {
+            throw new Error(evaluatedArgs[1] || 'assertion failed');
+          }
+          return null;
+        }
+        if (funcName === 'toInt') {
+          const v = this.evaluate(expr.args[0], env);
+          return parseInt(v, 10);
+        }
+        if (funcName === 'toFloat' || funcName === 'toDouble') {
+          const v = this.evaluate(expr.args[0], env);
+          return parseFloat(v);
+        }
+        if (funcName === 'toString') {
+          const v = this.evaluate(expr.args[0], env);
+          return String(v);
+        }
+        if (funcName === 'toBoolean') {
+          const v = this.evaluate(expr.args[0], env);
+          return Boolean(v);
         }
 
         const fn = this.functions.get(funcName);
