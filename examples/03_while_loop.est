@@ -1,0 +1,14 @@
+// Демонстрация 3: Цикл while и изменение переменных
+let number = 0
+let sum = 0
+
+print("Демонстрация цикла while:\n")
+
+while number < 5 {
+    sum = sum + number
+    print("Итерация: number = { number }, текущая сумма = { sum }\n")
+    number = number + 1
+}
+
+print("Цикл успешно завершен. Финальное значение number = { number }\n")
+print("Итоговая сумма = { sum }\n")

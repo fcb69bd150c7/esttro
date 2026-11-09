@@ -1,0 +1,36 @@
+{
+  "name": "esttro",
+  "displayName": "esttro",
+  "description": "Syntax highlighting and language support for esttro",
+  "version": "0.1.0",
+  "publisher": "esttro-lang",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "esttro",
+        "aliases": [
+          "esttro",
+          "est"
+        ],
+        "extensions": [
+          ".est"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "esttro",
+        "scopeName": "source.esttro",
+        "path": "./syntaxes/esttro.tmLanguage.json"
+      }
+    ]
+  }
+}
+

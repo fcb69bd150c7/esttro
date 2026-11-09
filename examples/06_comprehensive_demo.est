@@ -1,0 +1,45 @@
+// Демонстрационная программа для защиты зачётного задания
+// Включает все требуемые возможности: переменные, математику, if/else, while, print
+
+print("Зачетное задание: MiniLang\n\n")
+
+// 1. Объявление переменных и математические выражения
+let base = 10
+let multiplier = 3
+let calculated = (base * multiplier - 5) / 5
+
+print("1. Математика:\n")
+print("Базовое число: { base }\n")
+print("Множитель: { multiplier }\n")
+print("Результат (10 * 3 - 5) / 5 = { calculated }\n\n")
+
+// 2. Условная конструкция if/else (обе ветки)
+print("2. Проверка условий if/else:\n")
+let threshold = 4
+
+if calculated > threshold {
+    print("Ветка THEN: calculated ({ calculated }) > threshold ({ threshold })\n")
+} else {
+    print("Ветка ELSE: calculated не превышает threshold\n")
+}
+
+let smallVal = 2
+if smallVal > threshold {
+    print("Ветка THEN: smallVal превышает threshold\n")
+} else {
+    print("Ветка ELSE: smallVal ({ smallVal }) <= threshold ({ threshold })\n\n")
+}
+
+// 3. Дополнительное задание: цикл while
+print("3. Цикл while:\n")
+let counter = 1
+let total = 0
+
+while counter <= 5 {
+    total = total + counter
+    print("Шаг { counter }: промежуточная сумма = { total }\n")
+    counter = counter + 1
+}
+
+print("\nЦикл завершен. Итоговая сумма чисел от 1 до 5 = { total }\n")
+print("Финальное значение counter = { counter }\n")

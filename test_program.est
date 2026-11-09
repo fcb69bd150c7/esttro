@@ -1,0 +1,19 @@
+let a = 10;
+let b = 25;
+let result = a * 2 + b;
+
+print("Результат вычислений: {result}");
+
+if result > 40 {
+    print("Условие выполнено: результат больше 40");
+} else {
+    print("Условие не выполнено");
+}
+
+let counter = 1;
+while counter <= 3 {
+    print("Итерация цикла: {counter}");
+    counter = counter + 1;
+}
+
+print("Работа программы успешно завершена!");

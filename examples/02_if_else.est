@@ -1,0 +1,42 @@
+// Демонстрация 2: Условные конструкции if/else и операции сравнения
+let score = 75
+
+print("Проверка условия if/else:\n")
+
+// Ветка then (условие истинно)
+if score >= 60 {
+    print("Результат: Зачет получен (балл { score } >= 60)\n")
+} else {
+    print("Результат: Незачет (балл { score } < 60)\n")
+}
+
+// Ветка else (условие ложно)
+let lowScore = 40
+if lowScore >= 60 {
+    print("Успех: высокий балл\n")
+} else {
+    print("Ветка else: балл { lowScore } меньше проходного\n")
+}
+
+// Конструкция if без блока else
+if score > 0 {
+    print("Балл положительный (if без else сработал)\n")
+}
+
+// Демонстрация всех операций сравнения
+let x = 10
+let y = 20
+let eq = x == y
+let ne = x != y
+let lt = x < y
+let le = x <= y
+let gt = x > y
+let ge = x >= y
+
+print("\nОперации сравнения для x = 10, y = 20:\n")
+print("x == y: { eq }\n")
+print("x != y: { ne }\n")
+print("x <  y: { lt }\n")
+print("x <= y: { le }\n")
+print("x >  y: { gt }\n")
+print("x >= y: { ge }\n")

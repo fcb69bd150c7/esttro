@@ -1,0 +1,22 @@
+// Демонстрация 1: Объявление переменных и математические операции
+let a = 15
+let b = 4
+
+// Базовые операции: +, -, *, /, %
+let sum = a + b
+let diff = a - b
+let mult = a * b
+let div = a / b
+let rem = a % b
+
+// Использование скобок и унарного минуса
+let complex = -(a + b) * 2
+
+print("Математические операции и переменные:\n")
+print("a = { a }, b = { b }\n")
+print("a + b = { sum }\n")
+print("a - b = { diff }\n")
+print("a * b = { mult }\n")
+print("a / b = { div }\n")
+print("a % b = { rem }\n")
+print("-(a + b) * 2 = { complex }\n")

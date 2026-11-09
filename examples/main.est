@@ -1,0 +1,41 @@
+const COUNTER_LIMIT = 4
+
+print("hi.\n")
+
+function runCounter() -> void {
+    for index = 1, COUNTER_LIMIT + 4 {
+        print("1/{ index }.")
+
+        if index >= COUNTER_LIMIT {
+            print("\noverflow.")
+            break;
+        }
+    }
+}
+
+runCounter()
+
+function getSquare(value: int) -> int {
+    return value * value
+}
+
+let tickCounter: int = 0
+
+let pi: double = 3.141592
+let flag: boolean = true
+
+while tickCounter < 4 {
+    tickCounter += 1
+    flag = tickCounter % 2 == 1
+
+    print("------------------")
+
+    if flag {
+        print("\nvalid flag.")
+    } else {
+        print("\ninvalid flag.")
+    }
+
+    print("\ntick counter:\t{ tickCounter }.\nflag:\t{ flag }.\npi:\t{ pi }.")
+    print("tick square:\t{ getSquare(tickCounter) }.\n")
+}
